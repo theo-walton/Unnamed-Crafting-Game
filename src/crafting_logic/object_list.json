@@ -1,0 +1,488 @@
+{
+  "rock": { 
+    "attributes": {
+      "temperature": 0,
+      "fuelAt": 0,
+      "fuelQuantity": 0,
+      "strength": 10,
+      "forceful": true,
+      "breakableAt": 2000,
+      "mana": 0
+    },
+    "createdBy": []
+  },
+  "sand": {
+    "attributes": {
+      "temperature": 20,
+      "fuelAt": 0,
+      "fuelQuantity": 0,
+      "strength": 2,
+      "forceful": false,
+      "breakableAt": 1500,
+      "mana": 0
+    },
+    "createdBy": [
+      {
+        "combine": ["rock", "rock"],
+        "additionalRequirements": [
+          {
+            "name": "rock",
+            "attribute": "strength",
+            "value": 1,
+            "comparison": "less"
+          }
+        ]
+      }
+    ]
+  },
+  "wood": {
+    "temperature": 20,
+    "fuelAt": 300,
+    "fuelQuantity": 100,
+    "strength": 3,
+    "forceful": false,
+    "breakableAt": 200,
+    "mana": 0
+  },
+  "glass": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 4,
+    "forceful": false,
+    "breakableAt": 1200,
+    "mana": 0
+  },
+  "coal": {
+    "temperature": 20,
+    "fuelAt": 200,
+    "fuelQuantity": 800,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 500,
+    "mana": 0
+  },
+  "charcoal": {
+    "temperature": 20,
+    "fuelAt": 200,
+    "fuelQuantity": 700,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 450,
+    "mana": 0
+  },
+  "iron_ore": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 6,
+    "forceful": false,
+    "breakableAt": 1000,
+    "mana": 0
+  },
+  "iron": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 12,
+    "forceful": false,
+    "breakableAt": 1500,
+    "mana": 0
+  },
+  "copper_ore": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 5,
+    "forceful": false,
+    "breakableAt": 900,
+    "mana": 0
+  },
+  "copper": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 8,
+    "forceful": false,
+    "breakableAt": 1200,
+    "mana": 0
+  },
+  "gold_ore": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 4,
+    "forceful": false,
+    "breakableAt": 800,
+    "mana": 0
+  },
+  "gold": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 7,
+    "forceful": false,
+    "breakableAt": 1100,
+    "mana": 0
+  },
+  "water": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 0,
+    "mana": 0
+  },
+  "steam": {
+    "temperature": 200,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 0,
+    "mana": 0
+  },
+  "lava": {
+    "temperature": 1200,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 20,
+    "forceful": true,
+    "breakableAt": 99999,
+    "mana": 0
+  },
+  "obsidian": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 20,
+    "forceful": false,
+    "breakableAt": 5000,
+    "mana": 0
+  },
+  "stone_brick": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 15,
+    "forceful": false,
+    "breakableAt": 3000,
+    "mana": 0
+  },
+  "stick": {
+    "temperature": 20,
+    "fuelAt": 200,
+    "fuelQuantity": 20,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 50,
+    "mana": 0
+  },
+  "plank": {
+    "temperature": 20,
+    "fuelAt": 250,
+    "fuelQuantity": 80,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 150,
+    "mana": 0
+  },
+  "paper": {
+    "temperature": 20,
+    "fuelAt": 250,
+    "fuelQuantity": 30,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 30,
+    "mana": 0
+  },
+  "cloth": {
+    "temperature": 20,
+    "fuelAt": 300,
+    "fuelQuantity": 40,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 40,
+    "mana": 0
+  },
+  "leather": {
+    "temperature": 20,
+    "fuelAt": 280,
+    "fuelQuantity": 50,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 80,
+    "mana": 0
+  },
+  "bone": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 3,
+    "forceful": false,
+    "breakableAt": 400,
+    "mana": 0
+  },
+  "bone_powder": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 50,
+    "mana": 0
+  },
+  "wheat": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "flour": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "bread": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 10,
+    "mana": 0
+  },
+  "apple": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "plant": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "leaf": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 2,
+    "mana": 0
+  },
+  "sapling": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 10,
+    "mana": 0
+  },
+  "dirt": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 100,
+    "mana": 0
+  },
+  "mud": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 80,
+    "mana": 0
+  },
+  "clay": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 600,
+    "mana": 0
+  },
+  "brick": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 8,
+    "forceful": false,
+    "breakableAt": 1500,
+    "mana": 0
+  },
+  "cement": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 10,
+    "forceful": false,
+    "breakableAt": 2000,
+    "mana": 0
+  },
+  "concrete": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 12,
+    "forceful": false,
+    "breakableAt": 2500,
+    "mana": 0
+  },
+  "sulfur": {
+    "temperature": 20,
+    "fuelAt": 100,
+    "fuelQuantity": 50,
+    "strength": 1,
+    "forceful": false,
+    "breakableAt": 60,
+    "mana": 0
+  },
+  "salt": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 10,
+    "mana": 0
+  },
+  "sugar": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "oil": {
+    "temperature": 20,
+    "fuelAt": 100,
+    "fuelQuantity": 500,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 0,
+    "mana": 0
+  },
+  "gasoline": {
+    "temperature": 20,
+    "fuelAt": 50,
+    "fuelQuantity": 1000,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 0,
+    "mana": 0
+  },
+  "plastic": {
+    "temperature": 20,
+    "fuelAt": 300,
+    "fuelQuantity": 200,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 200,
+    "mana": 0
+  },
+  "rubber": {
+    "temperature": 20,
+    "fuelAt": 250,
+    "fuelQuantity": 150,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 180,
+    "mana": 0
+  },
+  "feather": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 1,
+    "mana": 0
+  },
+  "egg": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 2,
+    "mana": 0
+  },
+  "shell": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 2,
+    "forceful": false,
+    "breakableAt": 80,
+    "mana": 0
+  },
+  "fish": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 2,
+    "mana": 0
+  },
+  "meat": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 2,
+    "mana": 0
+  },
+  "cooked_meat": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 2,
+    "mana": 0
+  },
+  "bone_meal": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 0,
+    "forceful": false,
+    "breakableAt": 5,
+    "mana": 0
+  },
+  "glass_shard": {
+    "temperature": 20,
+    "fuelAt": 0,
+    "fuelQuantity": 0,
+    "strength": 2,
+    "forceful": true,
+    "breakableAt": 300,
+    "mana": 0
+  }
+}
