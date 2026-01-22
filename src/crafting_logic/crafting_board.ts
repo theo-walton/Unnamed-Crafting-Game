@@ -9,6 +9,11 @@ export interface CraftingBoard {
   cellCooldowns: number[];
 }
 
+// 0,0 = 0 - 1,0 = 1 - 2,0 = 2
+// 0,1 = 3 - 2,1 = 4 - 2,2 = 5
+// 0,2 = 6
+
+
 export function newDefaultObject(name: ValidObjectName): CraftingObject {
   return { name, ...allObjects[name].attributes};
 }
@@ -37,7 +42,8 @@ export function newCraftingBoard(): CraftingBoard {
 }
 
 export function tick(board: CraftingBoard) {
-  const neighbors = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+  console.log("Ticking");
+  const neighbors = [[0, -1], [-1, 0], [1, 0], [0, 1]];
   for (let y = 0; y < board.height; y++) {
     for (let x = 0; x < board.width; x++) {
       const cellIndex = x + board.width * y;
@@ -108,6 +114,7 @@ function doInteraction(o1: CraftingObject, o2?: CraftingObject) {
           });
           if (allowed) {
             const newObject = newDefaultObject(key);
+            console.log("interaction occuring");
             Object.assign(o1, newObject);
             Object.assign(o2, newObject);
             interactionComplete = true;
@@ -121,6 +128,7 @@ function doInteraction(o1: CraftingObject, o2?: CraftingObject) {
           });
           if (allowed) {
             const newObject = newDefaultObject(key);
+            console.log("interaction occuring");
             Object.assign(o1, newObject);
             interactionComplete = true;
           }
