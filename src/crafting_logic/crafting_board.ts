@@ -1,5 +1,4 @@
-import { CraftingObject } from "./crafting_object";
-import * as ObjectList from "./object_list.json";
+import { CraftingObject, allObjects, ValidObjectName, CreationRequirement } from "./crafting_object";
 
 export interface CraftingBoard {
   width: number;
@@ -10,10 +9,13 @@ export interface CraftingBoard {
   cellCooldowns: number[];
 }
 
-export function addObjectToBoard(board: CraftingBoard, x: number, y: number, name: keyof typeof ObjectList) {
-  const newObject = { name, ...ObjectList[name]};
+export function newDefaultObject(name: ValidObjectName): CraftingObject {
+  return { name, ...allObjects[name].attributes};
+}
+
+export function addObjectToBoard(board: CraftingBoard, x: number, y: number, name: ValidObjectName) {
   if (x >= 0 && x < board.width && y >= 0 && y < board.height) {
-    board.cells[x + board.width * y] = newObject;
+    board.cells[x + board.width * y] = newDefaultObject(name);
     board.cellCooldowns[x + board.width * y] = 10;
   }
 }
@@ -59,11 +61,71 @@ export function tick(board: CraftingBoard) {
           }
         }
       }
+      doInteraction(board.cells[cellIndex]);
       interactions.forEach(v => doInteraction(...v));
     }
   }
 }
 
-function doInteraction(o1: CraftingObject, o2: CraftingObject) {
+function requirementMet(obj: CraftingObject, requirement: CreationRequirement): boolean {
+  // requirements are basically constraints. If its not talking about the object name in
+  // question, then it doesn't apply and that requirement is met.
+  if (requirement.name !== obj.name) {
+    return true;
+  }
+  if (requirement.comparison === "equal") {
+    return obj[requirement.attribute] == requirement.value;
+  }
+  if (requirement.comparison === "less") {
+    return Number(obj[requirement.attribute]) < Number(requirement.value);
+  }
+  if (requirement.comparison === "more") {
+    return Number(obj[requirement.attribute]) > Number(requirement.value);
+  }
+  console.error(`Invalid comparison type ${requirement.comparison}`);
+  return false;
+}
 
+// looks up possible new CraftingObjects that can be created from the inputs.
+// If a match is found, both objects are replaced with the resulting output.
+function doInteraction(o1: CraftingObject, o2?: CraftingObject) {
+  let interactionComplete = false;
+  (Object.keys(allObjects) as ValidObjectName[]).forEach(key => {
+    if (interactionComplete) return;
+
+    allObjects[key].createdBy.forEach(method => {
+      if (interactionComplete) return;
+
+      if (o2 && method.combine.length == 2) {
+        if (
+          (o1.name == method.combine[0] && o2.name == method.combine[1]) ||
+          (o2.name == method.combine[0] && o1.name == method.combine[1])
+        ) {
+          let allowed = true;
+          method.additionalRequirements.forEach(requirement => {
+            allowed &&= requirementMet(o1, requirement);
+            allowed &&= requirementMet(o2, requirement);
+          });
+          if (allowed) {
+            const newObject = newDefaultObject(key);
+            Object.assign(o1, newObject);
+            Object.assign(o2, newObject);
+            interactionComplete = true;
+          }
+        }
+      } else if (!o2 && method.combine.length == 1) {
+        if (o1.name == method.combine[0]) {
+          let allowed = true;
+          method.additionalRequirements.forEach(requirement => {
+            allowed &&= requirementMet(o1, requirement);
+          });
+          if (allowed) {
+            const newObject = newDefaultObject(key);
+            Object.assign(o1, newObject);
+            interactionComplete = true;
+          }
+        }
+      }
+    });
+  });
 }
