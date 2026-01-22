@@ -1,4 +1,5 @@
 import { CraftingObject, allObjects, ValidObjectName, CreationRequirement } from "./crafting_object";
+import { temperatureEqualizer, ignition, destruction, broken, erode, manaSwap } from "./crafting_systems";
 
 export interface CraftingBoard {
   width: number;
@@ -66,8 +67,15 @@ export function tick(board: CraftingBoard) {
       }
       doInteraction(board.cells[cellIndex]);
       interactions.forEach(v => doInteraction(...v));
+
+      interactions.forEach(v => applySystems2(...v));
+      const broken = applySystems1(board.cells[cellIndex]);
       // reset the cooldown
       board.cellCooldowns[cellIndex] = COOLDOWN;
+
+      if (broken) {
+        removeObjectFromBoard(board, x, y);
+      }
     }
   }
 }
@@ -89,6 +97,18 @@ function requirementMet(obj: CraftingObject, requirement: CreationRequirement): 
   }
   console.error(`Invalid comparison type ${requirement.comparison}`);
   return false;
+}
+
+function applySystems1(obj: CraftingObject): boolean {
+  ignition(obj);
+  return broken(obj);
+}
+
+function applySystems2(o1: CraftingObject, o2: CraftingObject) {
+  temperatureEqualizer(o1, o2);
+  destruction(o1, o2);
+  erode(o1, o2);
+  manaSwap(o1, o2);
 }
 
 // looks up possible new CraftingObjects that can be created from the inputs.

@@ -28,10 +28,11 @@ export function destruction(o1: CraftingObject, o2: CraftingObject) {
   }
 }
 
-export function broken(o1: CraftingObject) {
+export function broken(o1: CraftingObject): boolean {
   if (o1.strength < 0 && o1.temperature < o1.breakableAt) {
-    // destroy?? - TBD how this works
+    return true;
   }
+  return false;
 }
 
 export function erode(o1: CraftingObject, o2: CraftingObject) {
@@ -46,6 +47,6 @@ export function erode(o1: CraftingObject, o2: CraftingObject) {
 }
 
 // // MAGIC CHANGES
-// export function manaSwap(o1: CraftingObject, o2: CraftingObject) {
-//   [o1.mana, o2.mana] = [o2.mana, o1.mana];
-// }
+export function manaSwap(o1: CraftingObject, o2: CraftingObject) {
+  [o1.mana, o2.mana] = [o2.mana, o1.mana];
+}
