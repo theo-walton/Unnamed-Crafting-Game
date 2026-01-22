@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { newCraftingBoard, addObjectToBoard, tick, removeObjectFromBoard } from '../crafting_logic/crafting_board'
+import { newCraftingBoard, addObjectToBoard, tick, removeObjectFromBoard, COOLDOWN } from '../crafting_logic/crafting_board'
 import { allObjects, ValidObjectName } from '../crafting_logic/crafting_object'
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     const id = setInterval(() => {
       tick(boardRef.current)
       setTickCount(c => c + 1)
-    }, 100)
+    }, 250)
     return () => clearInterval(id)
   }, [])
 
@@ -25,7 +25,7 @@ export default function App() {
     setTickCount(c => c + 1)
   }
 
-  const { width, height, cells } = boardRef.current
+  const { width, height, cells, cellCooldowns } = boardRef.current
 
   const objectNames = Object.keys(allObjects) as ValidObjectName[]
 
@@ -45,7 +45,13 @@ export default function App() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#fafafa'
+                background: ((): string => {
+                  const ticksLeft = cellCooldowns[idx] ?? 0
+                  const maxAlpha = 0.2
+                  const alpha = COOLDOWN > 0 ? Math.min(maxAlpha, (ticksLeft / COOLDOWN) * maxAlpha) : 0
+                  if (alpha > 0) return `linear-gradient(rgba(255,0,0,${alpha}), rgba(255,0,0,${alpha})), #fafafa`
+                  return '#fafafa'
+                })()
               }}>
                 {cell === undefined ? (
                   <select defaultValue={""} onChange={e => handleAdd(col, row, e.target.value)}>

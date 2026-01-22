@@ -9,10 +9,7 @@ export interface CraftingBoard {
   cellCooldowns: number[];
 }
 
-// 0,0 = 0 - 1,0 = 1 - 2,0 = 2
-// 0,1 = 3 - 2,1 = 4 - 2,2 = 5
-// 0,2 = 6
-
+export const COOLDOWN = 5;
 
 export function newDefaultObject(name: ValidObjectName): CraftingObject {
   return { name, ...allObjects[name].attributes};
@@ -21,7 +18,7 @@ export function newDefaultObject(name: ValidObjectName): CraftingObject {
 export function addObjectToBoard(board: CraftingBoard, x: number, y: number, name: ValidObjectName) {
   if (x >= 0 && x < board.width && y >= 0 && y < board.height) {
     board.cells[x + board.width * y] = newDefaultObject(name);
-    board.cellCooldowns[x + board.width * y] = 10;
+    board.cellCooldowns[x + board.width * y] = COOLDOWN;
   }
 }
 
@@ -69,6 +66,8 @@ export function tick(board: CraftingBoard) {
       }
       doInteraction(board.cells[cellIndex]);
       interactions.forEach(v => doInteraction(...v));
+      // reset the cooldown
+      board.cellCooldowns[cellIndex] = COOLDOWN;
     }
   }
 }
